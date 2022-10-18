@@ -1,13 +1,15 @@
 package com.example.parsegram
 
 import android.app.Application
-import android.util.Log
+import android.widget.ProgressBar
 import com.parse.Parse
 import com.parse.ParseObject
+
 
 class ParsegramApplication : Application(){
     override fun onCreate() {
         super.onCreate()
+
 
         // Register your parse models
         ParseObject.registerSubclass(Post::class.java)

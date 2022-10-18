@@ -3,21 +3,20 @@ package com.example.parsegram
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
-import androidx.activity.result.ActivityResult
+import android.view.Gravity
+import android.widget.*
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import com.parse.*
 import java.io.File
+import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,6 +27,24 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        val actionBar = supportActionBar
+        actionBar!!.setDisplayOptions(
+            actionBar.getDisplayOptions()
+                    or ActionBar.DISPLAY_SHOW_CUSTOM
+        )
+        val imageView = ImageView(actionBar.themedContext)
+        imageView.scaleType = ImageView.ScaleType.FIT_START
+        imageView.setImageResource(R.drawable.parsegram_logo_white)
+        val layoutParams: android.app.ActionBar.LayoutParams = android.app.ActionBar.LayoutParams(
+            ActionBar.LayoutParams.WRAP_CONTENT,
+            ActionBar.LayoutParams.WRAP_CONTENT, (Gravity.LEFT
+                    or Gravity.CENTER_VERTICAL)
+        )
+        layoutParams.rightMargin = 40
+        imageView.layoutParams = layoutParams
+        actionBar.customView = imageView
 
         // 1. set description
 
@@ -41,6 +58,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         // 3. ImageView to show picture
+
+
 
 
         // 4. Button to save and post
@@ -90,6 +109,13 @@ class MainActivity : AppCompatActivity() {
         post.setDescription(description)
         post.setUser(user)
         post.setImage(ParseFile(file))
+
+        // on some click or some loading we need to wait for...
+        // on some click or some loading we need to wait for...
+        val pb = findViewById<ProgressBar>(R.id.pbLoading)
+        pb.visibility = ProgressBar.VISIBLE
+// run a background job and once complete
+
         post.saveInBackground() { exception ->
             if (exception != null) {
 
@@ -117,6 +143,15 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
+
+        val delayInMillis: Long = 1000
+        val timer = Timer()
+        timer.schedule(object : TimerTask() {
+            override fun run() {
+                pb.visibility = ProgressBar.INVISIBLE
+            }
+        }, delayInMillis)
+
     }
     fun onLaunchCamera() {
         // create Intent to take a picture and return control to the calling application
