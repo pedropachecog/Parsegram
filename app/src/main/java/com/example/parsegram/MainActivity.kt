@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         // 1. set description
 
+        val etDescription = findViewById<EditText>(R.id.description)
 
         // 2. button to launch the camera
 
@@ -50,10 +51,15 @@ class MainActivity : AppCompatActivity() {
 
             // Get the description
 
-            val description = findViewById<EditText>(R.id.description).text.toString()
+            val description = etDescription.text.toString()
             val user = ParseUser.getCurrentUser()
-            
-            submitPost(description, user)
+
+            if(photoFile!=null){
+                submitPost(description, user,photoFile!!)
+            }else{
+                //TODO print error log message
+                Toast.makeText(this, "Picture file could not be loaded", Toast.LENGTH_SHORT).show()
+            }
 
 
         }
@@ -77,12 +83,13 @@ class MainActivity : AppCompatActivity() {
         queryPosts()
     }
 
-    private fun submitPost(description: String, user: ParseUser) {
+    private fun submitPost(description: String, user: ParseUser, file: File) {
         // create Post object
 
         val post = Post()
         post.setDescription(description)
         post.setUser(user)
+        post.setImage(ParseFile(file))
         post.saveInBackground() { exception ->
             if (exception != null) {
 
@@ -92,10 +99,22 @@ class MainActivity : AppCompatActivity() {
 
                 Toast.makeText(this@MainActivity, "Error saving post", Toast.LENGTH_SHORT).show()
             } else {
+                Toast.makeText(this@MainActivity, "Post successfully submitted!", Toast
+                    .LENGTH_SHORT)
+                    .show()
 
                 Log.i(TAG, "Successfully saved post")
                 // TODO resetting the edittext
+
+                val etDescription = findViewById<EditText>(R.id.description)
+
+                etDescription.text.clear()
+
                 // todo resetting the imageview
+
+                val ivPreview = findViewById<ImageView>(R.id.imageView)
+                ivPreview.setImageBitmap(null)
+
             }
         }
     }
