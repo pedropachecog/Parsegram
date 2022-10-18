@@ -3,9 +3,12 @@ package com.example.parsegram
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import com.parse.ParseUser
 
@@ -14,6 +17,23 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        val actionBar = supportActionBar
+        actionBar!!.setDisplayOptions(
+            actionBar.getDisplayOptions()
+                    or ActionBar.DISPLAY_SHOW_CUSTOM
+        )
+        val imageView = ImageView(actionBar.themedContext)
+        imageView.scaleType = ImageView.ScaleType.FIT_START
+        imageView.setImageResource(R.drawable.parsegram_logo_white)
+        val layoutParams: android.app.ActionBar.LayoutParams = android.app.ActionBar.LayoutParams(
+            ActionBar.LayoutParams.WRAP_CONTENT,
+            ActionBar.LayoutParams.WRAP_CONTENT, (Gravity.LEFT
+                    or Gravity.CENTER_VERTICAL)
+        )
+        layoutParams.rightMargin = 40
+        imageView.layoutParams = layoutParams
+        actionBar.customView = imageView
 
         //Check if user is logged in
         if (ParseUser.getCurrentUser() != null) {
