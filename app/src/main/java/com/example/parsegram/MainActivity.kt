@@ -13,6 +13,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.parse.*
 import java.io.File
 import java.util.*
@@ -57,11 +58,34 @@ class MainActivity : AppCompatActivity() {
             onLaunchCamera()
         }
 
+        findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnItemSelectedListener {
+
+            item ->
+
+            when(item.itemId){
+
+                R.id.action_home -> {
+                    // TODO Navigate to the home screen
+
+                    Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show()
+                }
+
+                R.id.action_compose -> {
+                    // TODO Navigate to the compose screen
+
+                    Toast.makeText(this, "Compose", Toast.LENGTH_SHORT).show()}
+
+                R.id.action_profile -> {
+                    // TODO Navigate to the profile screen
+
+                    Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show()}
+            }
+
+            // returns true to say that we have handled this user interaction
+            true
+        }
+
         // 3. ImageView to show picture
-
-
-
-
         // 4. Button to save and post
 
         findViewById<Button>(R.id.btnSubmit).setOnClickListener {
