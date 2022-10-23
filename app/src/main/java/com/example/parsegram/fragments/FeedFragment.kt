@@ -70,6 +70,7 @@ class FeedFragment : Fragment() {
             override fun done(posts: MutableList<Post>?, e: ParseException?) {
                 if (e != null) {
                     Log.e(TAG, "Error fetching posts")
+                    e.printStackTrace()
                 } else {
                     if (posts != null) {
                         for (post in posts) {
