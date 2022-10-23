@@ -59,6 +59,7 @@ object TimeFormatter {
             then.time = format.parse(rawJsonDate)
             val date = then.time
             val format1 = SimpleDateFormat("h:mm a \u00b7 dd MMM yy")
+//            val format1 = SimpleDateFormat("h:mm a \u00b7 dd MMM yy")
             time = format1.format(date)
         } catch (e: ParseException) {
             e.printStackTrace()

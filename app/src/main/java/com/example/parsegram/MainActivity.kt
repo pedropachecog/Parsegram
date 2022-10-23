@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.parsegram.fragments.ComposeFragment
 import com.example.parsegram.fragments.FeedFragment
+import com.example.parsegram.fragments.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.parse.*
 import java.io.File
@@ -70,9 +71,9 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.action_profile -> {
-                    // TODO Navigate to the profile screen
+                    fragmentToShow = ProfileFragment()
 
-                    Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show()
                 }
             }
 

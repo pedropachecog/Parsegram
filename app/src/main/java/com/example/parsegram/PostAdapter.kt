@@ -1,7 +1,7 @@
 package com.example.parsegram
 
+import TimeFormatter
 import android.content.Context
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import org.w3c.dom.Text
 
-class PostAdapter(val context: Context, val posts: List<Post>) : RecyclerView.Adapter<PostAdapter
+class PostAdapter(val context: Context, val posts: ArrayList<Post>) : RecyclerView.Adapter<PostAdapter
 .ViewHolder>() {
 
 
@@ -33,6 +32,17 @@ class PostAdapter(val context: Context, val posts: List<Post>) : RecyclerView.Ad
         return posts.size
     }
 
+    // Clean all elements of the recycler
+    fun clear() {
+        posts.clear()
+        notifyDataSetChanged()
+    }
+
+    // Add a list of items -- change to type used
+    fun addAll(list: List<Post>) {
+        posts.addAll(list)
+        notifyDataSetChanged()
+    }
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val tvUsername : TextView
         val ivImage : ImageView
@@ -52,7 +62,7 @@ class PostAdapter(val context: Context, val posts: List<Post>) : RecyclerView.Ad
             tvDescription.text = post.getDescription()
             tvUsername.text = post.getUser()?.username
 
-            //TODO: pp use Time Formatter
+            //TODO: use Time Formatter to add date at bottom of post
             tvTime.text = TimeFormatter.getTimeDifference(post.createdAt.toString())
 
             // Populate image

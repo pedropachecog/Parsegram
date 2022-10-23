@@ -92,6 +92,11 @@ class LoginActivity : AppCompatActivity() {
         )
     }
 
+    // TODO move this to profile fragment
+    private fun logout(){
+        ParseUser.logOut()
+    }
+
     private fun goToMainActivity() {
         val intent = Intent(this@LoginActivity, MainActivity::class.java)
         startActivity(intent)
