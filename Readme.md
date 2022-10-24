@@ -22,7 +22,7 @@ The following **optional** features are implemented:
 - [x] Show the username and creation time for each post.
 - [ ] User can tap a post to view post details, including timestamp and caption.
 - [ ] User Profiles
-      - [ ] Allow the logged in user to add a profile photo
+      - [ ] Allow the logged in user to add a profile photo     
       - [ ] Display the profile photo with each post
       - [ ] Tapping on a post's username or profile photo goes to that user's profile page and shows a grid view of the user's posts 
 - [ ] User can comment on a post and see all comments for each post in the post details screen.
@@ -41,13 +41,11 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 - [Android Async HTTP](https://github.com/codepath/CPAsyncHttpClient) - Simple asynchronous HTTP requests with JSON parsing
 - [Glide](https://github.com/bumptech/glide) - Image loading and caching library for Android
 
-
 ## Credits
 
 <a href="https://www.flaticon.com/free-icons/add" title="add icons">Add (unchecked) icons created by reussy - Flaticon</a>
 
 <a href="https://www.flaticon.com/free-icons/home-button" title="home button icons">Home button (checked and unchecked) icons created by Freepik - Flaticon</a>
-
 
 <a href="https://www.flaticon.com/free-icons/add" title="add icons">Add (checked) icons created by riajulislam - Flaticon</a>
 
