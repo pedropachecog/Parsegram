@@ -70,8 +70,6 @@ open class FeedFragment : Fragment() {
 
         queryPosts(20)
 
-
-
     }
 
 
