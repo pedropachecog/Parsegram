@@ -121,4 +121,6 @@ class MainActivity : AppCompatActivity() {
     companion object {
         val TAG = "MainActivityPg"
     }
+
+    //just a test
 }
